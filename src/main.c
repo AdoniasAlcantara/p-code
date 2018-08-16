@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     char message[255];
 
     if (argc < 2) {
-        fprintf(stderr, "Missing argument program_file\n");
+        fprintf(stderr, "Missing argument: program_file\n");
         return 1;
     }
 

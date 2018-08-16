@@ -3,9 +3,9 @@
 #include "pcode.h"
 
 int findBase(int);      // Find base n levels down
-void callOperation();   // Executes instruction 'OPR 0 X', where X is a number between 0 and 13
-void printStack();      // Prints the current stack state
-void printRegisters();
+void callOperation();   // Executes instruction 'OPR 0 X', where X is an operation between 0 and 13
+void printStack();      // Prints current stack state
+void printRegisters();  // Prints current registers state
 void printNextInstruction();
 
 const char *INSTRUCTIONS_STR[] = {"LIT", "OPR", "LOD", "STO", "CAL", "INT", "JMP", "JPC"};
@@ -20,7 +20,7 @@ int parseSource(FILE *stream, Instruction *code, char *msg) {
     char statement[255];
     int count = 0;
 
-    while (fgets(statement, 255, stream) != NULL) {        
+    while (fgets(statement, 255, stream) != NULL) {
         if (!strToInstruction(statement, &code[count])) {
             if (msg != NULL)
                 sprintf(msg, "Line %d, unknown instruction:\n\t%s", count + 1, statement);
@@ -123,37 +123,37 @@ void callOperation() {
             break;
 
         case ODD:
-            stack[t] = stack[t] % 2 > 0 ? 1 : 0;
+            stack[t] = stack[t] % 2 > 0;
             break;
 
         case EQU:
             t--;
-            stack[t] = stack[t] == stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] == stack[t + 1];
             break;
 
         case NEQ:
             t--;
-            stack[t] = stack[t] != stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] != stack[t + 1];
             break;
 
         case LSS:
             t--;
-            stack[t] = stack[t] < stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] < stack[t + 1];
             break;
 
         case GEQ:
             t--;
-            stack[t] = stack[t] >= stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] >= stack[t + 1];
             break;
 
         case GTR:
             t--;
-            stack[t] = stack[t] > stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] > stack[t + 1];
             break;
 
         case LEQ:
             t--;
-            stack[t] = stack[t] <= stack[t + 1] ? 1 : 0;
+            stack[t] = stack[t] <= stack[t + 1];
             break;
 
         default:

@@ -1,7 +1,7 @@
 #ifndef PCODE_H
 #define PCODE_H
 /* 
- * Author:  Adonias A. S. Neto
+ * Author: Adonias A. S. Neto
  * Version: 0.1
  * 
  * This header provides types and functions to parse and 
