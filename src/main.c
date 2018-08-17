@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     }
     
     fclose(sourceFile);
-    printf("Parsing ok! %d lines found.\n", lines);
+    printf("Parsing ok! %d instructions found.\n", lines);
     execute(code, data);
 
     return 0;

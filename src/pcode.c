@@ -18,24 +18,37 @@ const Instruction *currIns; // Instruction currently being executed
 
 int parseSource(FILE *stream, Instruction *code, char *msg) {
     char statement[255];
-    int count = 0;
+    char *token; 
+    int lines = 0;              // Total input stream lines
+    int instructionCount = 0;   // Total of found instructions
 
     while (fgets(statement, 255, stream) != NULL) {
-        if (!strToInstruction(statement, &code[count])) {
-            if (msg != NULL)
-                sprintf(msg, "Line %d, unknown instruction:\n\t%s", count + 1, statement);
+        lines++;
 
-            return 0;
+        // Search a comment token and replace it with terminating null-character
+        token = strchr(statement, '#');
+
+        if (token != NULL)
+             *token = '\0';
+
+        if (strlen(statement) > 1) { // Skipping blank lines
+            if (!strToInstruction(statement, &code[instructionCount])) {
+                if (msg != NULL)
+                    sprintf(msg, "Line %d, unknown instruction:\n\t%s", lines, statement);
+
+                return 0;
+            } else {
+                instructionCount++;
+            }
         }
-
-        count++;
     }
 
-    return count;
+    return instructionCount;
 }
 
-void execute(const Instruction *code, int *stackData) {
-    stack = stackData;
+void execute(const Instruction *code, int *data) {
+    stack = data;
+    stack[0] = stack[1] = stack[2] = 0;
     p = 0;
     b = 0;
     t = -1;
