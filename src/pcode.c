@@ -26,10 +26,8 @@ int parseSource(FILE *stream, Instruction *code, char *msg) {
         lines++;
 
         // Search a comment token and replace it with terminating null-character
-        token = strchr(statement, '#');
-
-        if (token != NULL)
-             *token = '\0';
+        if ((token = strchr(statement, '#')) != NULL)
+            *token = '\0';
 
         if (strlen(statement) > 1) { // Skipping blank lines
             if (!strToInstruction(statement, &code[instructionCount])) {

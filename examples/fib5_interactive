@@ -1,21 +1,26 @@
+# Find n-th term in the Fibonacci sequence iteratively.
+
+# Variables: j, i, k, t, n. Result is put into j
 INT 0 3
-LIT 0 0
-LIT 0 1
-LIT 0 1
-LIT 0 5
+LIT 0 0     # j := 0
+LIT 0 1     # i := 1
+LIT 0 1     # k := 1
+LIT 0 5     # n := 5
+# WHILE
+LOD 0 5     # Load k
+LOD 0 6     # Load n
+OPR 0 13    # k <= n ?
+JPC 0 20    # if true then
+LOD 0 3     # Load j
+LOD 0 4     # Load i
+OPR 0 2     # t := j + i
+LOD 0 3     
+STO 0 4     # i := j
+STO 0 3     # j := t
 LOD 0 5
-LOD 0 6
-OPR 0 13
-JPC 0 20
-LOD 0 3
-LOD 0 4
-OPR 0 2
-LOD 0 3
-STO 0 4
-STO 0 3
-LOD 0 5
 LIT 0 1
 OPR 0 2
-STO 0 5
+STO 0 5     # k := k - 1
 JMP 0 5
+# END WHILE
 OPR 0 0

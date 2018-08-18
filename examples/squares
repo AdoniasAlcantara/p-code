@@ -1,28 +1,43 @@
-CAL 0 8
+# Example from blackmesatech.com/2011/12/pl0/index.xhtml (modified).
+# 
+# For n in 1 to limit, calculate sq := n * n.
+# Variables: n, sq, limit 
+
+INT 0 3     # skip n, sq, limit
+LIT 0 1
+STO 0 0     # n := 1
+LIT 0 1
+STO 0 1     # sq := 1
+LIT 0 20
+STO 0 2     # limit := 20
+LIT 0 11111 # Leave a marker to separate iterations
+LOD 0 0     # Record n = 1 and leave it here
+LOD 0 1     # Record sq = 1 and leave it here
+# WHILE (loop target)
+LOD 0 0     # Load n
+LOD 0 2     # Load limit
+OPR 0 10    # n lt limit?
+JPC 0 30    # JPC ENDWHILE
+# while (n <= limit) ...
+LIT 0 11111 # Leave a marker to separate iterations
+LOD 0 1
+LIT 0 1
+LOD 0 0
+LOD 0 0
+OPR 0 2     # Add
+OPR 0 2     # Add
+OPR 0 2     # Add
+STO 0 1     # sq := (sq + 1) + (n + n)
+LOD 0 0
+LIT 0 1
+OPR 0 2     # Add
+STO 0 0     # n := n + 1
+LOD 0 0     # Record which n we are working on, and leave it here
+LOD 0 1     # Leave a copy of n**2 here, for the record
+JMP 0 10    # JMP WHILE: next iteration of while
+# ENDWHILE
+LIT 0 11111 # Leave a final marker
+LIT 0 11111 # Leave a final marker
+LIT 0 11111 # Leave a final marker
 JMP 0 0
-INT 0 3
-LOD 1 3
-LOD 1 3
-OPR 0 4
-STO 1 4
-OPR 0 0
-INT 0 5
-LIT 0 1
-STO 0 3
-LIT 0 111111111
-LOD 0 3
-LIT 0 10
-OPR 0 13
-JPC 0 23
-CAL 0 2
-LOD 0 4
-LOD 0 3
-LIT 0 1
-OPR 0 2
-STO 0 3
-JMP 0 12
-LIT 0 111111111
-LIT 0 111111111
-LIT 0 111111111
-LIT 0 111111111
-OPR 0 0
+# Stop
