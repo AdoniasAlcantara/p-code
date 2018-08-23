@@ -1,0 +1,39 @@
+# Example of using nested function calls
+
+# main
+INT 0 5
+LIT 0 1
+STO 0 3
+LOD 0 3
+STO 0 8
+CAL 0 7
+OPR 0 0
+
+# fun1
+INT 0 6
+LIT 0 2
+STO 0 4
+LOD 0 4
+STO 0 9
+CAL 0 15
+STO 1 4
+OPR 0 0
+
+# fun2
+INT 0 5
+LIT 0 3
+STO 0 4
+LOD 0 3
+LOD 0 4
+OPR 0 2
+STO 0 8
+CAL 0 25
+STO 1 5
+OPR 0 0
+
+# fun3
+INT 0 4
+LOD 0 3
+OPR 0 4
+STO 1 4
+OPR 0 0
